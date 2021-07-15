@@ -5,7 +5,8 @@
 		"beryl",
 		"beryl.desktop",
 		"berylprof.xml",
-		"bipa.xml"
+		"bipa.xml",
+		"beryl.install"
 	],
 	"automaticUpdates": {
 		"type": "github",
