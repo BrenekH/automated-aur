@@ -1,0 +1,13 @@
+{
+	"name": "beryl",
+	"include": [
+		"beryl",
+		"beryl.desktop",
+		"berylprof.xml",
+		"bipa.xml"
+	],
+	"automaticUpdates": {
+		"type": "github",
+		"url": "https://github.com/BrenekH/beryl"
+	}
+}
