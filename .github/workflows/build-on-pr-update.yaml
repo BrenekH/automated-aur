@@ -8,10 +8,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: action/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Build package
         uses: ./.github/actions/build-package
+        with:
+          package-dir: 'pkgs/beryl'
 
       - name: Publish package
         uses: ./.github/actions/publish-package
