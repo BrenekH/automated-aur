@@ -5,4 +5,6 @@ RUN pacman -Syu --noconfirm && \
 
 COPY buildpkg.py entrypoint.sh /
 
+RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT [ "/entrypoint.sh" ]
