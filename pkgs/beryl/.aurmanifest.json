@@ -1,5 +1,6 @@
 {
 	"name": "beryl",
+	"testCmd": null,
 	"include": [
 		"beryl",
 		"beryl.desktop",
