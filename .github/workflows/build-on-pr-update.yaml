@@ -1,0 +1,9 @@
+name: Build on PR Update
+
+jobs:
+  build-beryl:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - name: Test docker
+        run: docker info
