@@ -1,0 +1,13 @@
+name: 'Build package'
+description: 'Build an Arch Linux package and run checks against it.'
+
+inputs:
+  package-dir:  # id of input
+    description: 'Package to build'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.package-dir }}

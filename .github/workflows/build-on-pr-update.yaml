@@ -4,8 +4,14 @@ on: push
 
 jobs:
   build-beryl:
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted]
 
     steps:
-      - name: Test docker
-        run: docker info
+      - name: Checkout repository
+        uses: action/checkout@v2
+
+      - name: Build package
+        uses: ./.github/actions/build-package
+
+      - name: Publish package
+        uses: ./.github/actions/publish-package

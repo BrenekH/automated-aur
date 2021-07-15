@@ -1,4 +1,4 @@
-FROM archlinux:base-devel
+FROM archlinux:base
 
 RUN pacman -Syu --noconfirm \
- pacman -S python --noconfirm
+ pacman -S --noconfirm python namcap
