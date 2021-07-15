@@ -1,10 +1,14 @@
 FROM archlinux:base
 
-RUN pacman -Syu --noconfirm && \
- pacman -S --noconfirm python namcap
-
 COPY buildpkg.py entrypoint.sh /
 
-RUN chmod +x /entrypoint.sh
+RUN pacman -Syu --noconfirm &&\
+ pacman -S --noconfirm python namcap sudo &&\
+ useradd builder -m &&\
+ passwd -d builder &&\
+ printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers &&\
+ chmod +x /entrypoint.sh
+
+USER builder
 
 ENTRYPOINT [ "/entrypoint.sh" ]
