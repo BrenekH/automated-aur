@@ -1,5 +1,7 @@
 name: Build on PR Update
 
+on: push
+
 jobs:
   build-beryl:
     runs-on: [self-hosted, linux]
