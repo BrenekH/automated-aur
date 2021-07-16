@@ -11,7 +11,7 @@ def main(_package_dir: str):
 
 	with tempfile.TemporaryDirectory() as git_td:
 		# Clone the existing AUR repo to a dir in `/tmp`.
-		subprocess.check_call(["git", "clone", f"https://aur.archlinux.org/{manifest['name']}.git", git_td])
+		subprocess.check_call(["git", "clone", f"aur@aur.archlinux.org:{manifest['name']}.git", git_td])
 
 		# Copy `PKGBUILD` and everything in the `manifest.include` array to the repo.
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(git_td))
