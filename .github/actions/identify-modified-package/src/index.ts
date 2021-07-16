@@ -18,7 +18,7 @@ try {
 
 	console.log(pr.diff_url.replace("https://github.com", ""));
 
-	octokit.request(pr.diff_url.replace("https://github.com", "")).then((value) => {
+	octokit.request(pr.diff_url.replace("https://github.com", ""), {headers: {Accept: "application/vnd.github.v3.diff"}}).then((value) => {
 		console.log(value);
 	}).catch((error) => {
 		core.setFailed(error);
@@ -26,7 +26,7 @@ try {
 
 	console.log(pr.patch_url.replace("https://github.com", ""));
 
-	octokit.request(pr.patch_url.replace("https://github.com", "")).then((value) => {
+	octokit.request(pr.patch_url.replace("https://github.com", ""), {headers: {Accept: "application/vnd.github.v3.patch"}}).then((value) => {
 		console.log(value);
 	}).catch((error) => {
 		core.setFailed(error);
