@@ -17,7 +17,7 @@ def main(_package_dir: str):
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(git_td))
 
 		# Recreate `.SRCINFO` using `makepkg --printsrcinfo > .SRCINFO`.
-		subprocess.check_call(["makepkg", "--printsrcinfo", ">", ".SRCINFO"], cwd=git_td, shell=True)
+		subprocess.check_call(["makepkg", "-do", "--nocheck", "--noprepare", "--printsrcinfo", ">", ".SRCINFO"], cwd=git_td, shell=True)
 
 		# TODO: Ensure proper `.gitignore` file is in the repo (useful for new packages, not yet uploaded).
 
