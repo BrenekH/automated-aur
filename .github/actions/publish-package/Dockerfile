@@ -1,6 +1,6 @@
 FROM archlinux:base-devel
 
-COPY entrypoint.sh /
+COPY publishpkg.py entrypoint.sh /
 
 RUN pacman -Syu --noconfirm &&\
  pacman -S --noconfirm --needed python namcap sudo git openssh &&\
