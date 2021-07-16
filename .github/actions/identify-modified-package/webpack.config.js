@@ -30,7 +30,10 @@ const commonConfig = {
 			"path": false
 		}
 	},
-	devtool: "source-map"
+	devtool: "source-map",
+	experiments: {
+		topLevelAwait: true,
+	}
 }
 
 module.exports = [
