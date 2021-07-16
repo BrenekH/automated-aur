@@ -16,8 +16,11 @@ def main(_package_dir: str):
 		# Copy `PKGBUILD` and everything in the `manifest.include` array to the repo.
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(git_td))
 
+		# Allow makepkg to succeed without polluting --printsrcinfo
+		subprocess.check_call(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=git_td)
+
 		# Recreate `.SRCINFO` using `makepkg --printsrcinfo > .SRCINFO`.
-		subprocess.check_call(["makepkg", "-do", "--nocheck", "--noprepare", "--printsrcinfo", ">", ".SRCINFO"], cwd=git_td, shell=True)
+		subprocess.check_call(["makepkg", "--printsrcinfo", ">", ".SRCINFO"], cwd=git_td, shell=True)
 
 		# TODO: Ensure proper `.gitignore` file is in the repo (useful for new packages, not yet uploaded).
 
