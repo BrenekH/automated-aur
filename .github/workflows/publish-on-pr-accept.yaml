@@ -10,4 +10,19 @@ jobs:
     if: github.event.label.name == 'lgtm'
 
     steps:
-      - run: cat $GITHUB_EVENT_PATH
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # TODO: Identify which package was updated and fail if there are more than one
+
+      - name: Publish to AUR
+        uses: ./.github/actions/publish-package
+        with:
+          package-dir: 'pkgs/beryl'
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Comment on PR
+        run: echo "Hi"
+
+      - name: Close PR
+        run: echo "Hi"

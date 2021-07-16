@@ -24,16 +24,3 @@ jobs:
         run: echo "${{ steps.build-package.outputs.result }}"
 
       # TODO: Send build results to PR as a comment
-
-  # publish-beryl:
-  #   runs-on: [self-hosted]
-
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
-
-  #     - name: Publish package
-  #       uses: ./.github/actions/publish-package
-  #       with:
-  #         package-dir: 'pkgs/beryl'
-  #         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
