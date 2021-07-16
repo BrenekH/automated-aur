@@ -16,17 +16,17 @@ try {
 
 	// console.log(pr);
 
-	console.log(pr.diff_url);
+	console.log(pr.diff_url.replace("https://github.com", ""));
 
-	octokit.request(pr.diff_url).then((value) => {
+	octokit.request(pr.diff_url.replace("https://github.com", "")).then((value) => {
 		console.log(value);
 	}).catch((error) => {
 		core.setFailed(error);
 	});
 
-	console.log(pr.patch_url);
+	console.log(pr.patch_url.replace("https://github.com", ""));
 
-	octokit.request(pr.patch_url).then((value) => {
+	octokit.request(pr.patch_url.replace("https://github.com", "")).then((value) => {
 		console.log(value);
 	}).catch((error) => {
 		core.setFailed(error);
