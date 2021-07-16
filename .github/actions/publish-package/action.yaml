@@ -3,7 +3,10 @@ description: 'Publish an Arch Linux package to the AUR.'
 
 inputs:
   package-dir:
-    description: 'Package to publish'
+    description: 'Package to publish.'
+    required: true
+  ssh-private-key:
+    description: 'Private key to use while publishing.'
     required: true
 
 runs:
@@ -11,3 +14,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.package-dir }}
+    - ${{ inputs.ssh-private-key }}
