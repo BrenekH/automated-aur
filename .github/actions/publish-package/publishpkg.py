@@ -11,27 +11,31 @@ def main(_package_dir: str):
 
 	with tempfile.TemporaryDirectory() as git_td:
 		# Clone the existing AUR repo to a dir in `/tmp`.
+		print("Cloning existing AUR repo")
 		subprocess.check_call(["git", "clone", f"aur@aur.archlinux.org:{manifest['name']}.git", git_td])
 
 		# Copy `PKGBUILD` and everything in the `manifest.include` array to the repo.
+		print("Copying files to git repo")
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(git_td))
 
 		# Recreate .SRCINFO
+		print("Creating .SRCINFO")
 		src_info = subprocess.check_output(["makepkg", "--printsrcinfo"], cwd=git_td, universal_newlines=True)
 		with (Path(git_td) / ".SRCINFO").open("w") as f:
 			f.write(src_info)
 
 		# Ensure proper .gitignore file is in the repo (useful for new packages, not yet uploaded).
+		print("Writing .gitignore")
 		with (Path(git_td) / ".gitignore").open("w") as f:
 			f.write("# Require every item to be force added\n*")
 
 		# Force-add all modified files to the repo (if .gitignore hasn't changed, force-adding it won't break anything, so it's hardcoded in)
+		print("Adding files")
 		subprocess.check_call(["git", "add", "-f"] + ["PKGBUILD", ".gitignore"] + manifest["include"],  cwd=git_td)
 
 		# Push to AUR
+		print("Pushing to AUR")
 		subprocess.check_call(["git", "push"],  cwd=git_td)
-
-		# TODO: Output any complications to standard output and exit with the proper code.
 
 	return
 
