@@ -35,7 +35,7 @@ def main(_package_dir: str):
 
 		# Force-add all modified files to the repo (if .gitignore hasn't changed, force-adding it won't break anything, so it's hardcoded in)
 		print("[INFO] Adding files")
-		subprocess.check_call(["git", "add", "-f"] + ["PKGBUILD", ".gitignore"] + manifest["include"],  cwd=git_td)
+		subprocess.check_call(["git", "add", "-f"] + ["PKGBUILD", ".SRCINFO", ".gitignore"] + manifest["include"],  cwd=git_td)
 
 		print("[INFO] Committing")
 		subprocess.check_call(["git", "commit", "-m", f"Update {_package_dir.replace('pkgs/', '')} (automatic)"], cwd=git_td)
