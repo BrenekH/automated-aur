@@ -14,11 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
       # TODO: Identify which package was updated and fail if there are more than one
+      - name: Identify modified package
+        uses: ./.github/actions/identify-modified-package
 
       - name: Publish to AUR
         uses: ./.github/actions/publish-package
         with:
-          package-dir: 'pkgs/beryl'
+          package-dir: 'pkgs/beryla'
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Comment on PR
