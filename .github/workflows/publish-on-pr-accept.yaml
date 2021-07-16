@@ -1,0 +1,12 @@
+name: Publish on PR Accept
+
+on:
+  pull_request:
+   types: [labeled]
+
+jobs:
+  output:
+    runs-on: [self-hosted]
+
+    steps:
+      - run: cat $GITHUB_EVENT_PATH
