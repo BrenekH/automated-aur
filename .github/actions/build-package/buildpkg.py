@@ -70,8 +70,7 @@ def copy_files_to_dir(files: List[Path], dir: Path):
 if __name__ == "__main__":
 	output = build(sys.argv[1])
 
-	if "--stdout" in sys.argv:
+	if "--normal" in sys.argv:
 		print(output)
 	else:
-		with open("/buildout/out.txt", "w") as f:
-			f.write(output.replace("\n", "\\n"))
+		print(f"::set-output name=result::{output}")
