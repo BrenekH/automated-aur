@@ -4,13 +4,21 @@ import { PullRequest } from "@octokit/webhooks-definitions/schema";
 
 try {
 
-	console.log(github.context);
-	if (github.context.eventName !== "pull_request") {
+	const context = github.context;
+	if (context.eventName !== "pull_request") {
 		throw "Not a pull request";
 	}
 
-	const pr = github.context.payload as PullRequest;
+	const pr = context.payload as PullRequest;
 	const octokit = github.getOctokit(core.getInput("token"));
+
+	console.log(pr.diff_url);
+
+	octokit.request(pr.diff_url).then((value) => {
+		console.log(value);
+	}).catch((error) => {
+		core.setFailed(error);
+	});
 
 	console.log(pr.patch_url);
 
