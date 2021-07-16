@@ -1,0 +1,13 @@
+name: 'Publish package'
+description: 'Publish an Arch Linux package to the AUR.'
+
+inputs:
+  package-dir:
+    description: 'Package to publish'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.package-dir }}
