@@ -7,7 +7,7 @@ RUN pacman -Syu --noconfirm &&\
  useradd builder -m &&\
  passwd -d builder &&\
  printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers &&\
- chmod +x /entrypoint.sh
+ chmod +x /publishpkg.py /entrypoint.sh
 
 USER builder
 

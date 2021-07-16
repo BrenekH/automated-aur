@@ -8,7 +8,7 @@ RUN pacman -Syu --noconfirm &&\
  passwd -d builder &&\
  printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers &&\
  mkdir /buildout && chown -R builder:builder /buildout &&\
- chmod +x /entrypoint.sh
+ chmod +x /buildpkg.py /entrypoint.sh
 
 USER builder
 
