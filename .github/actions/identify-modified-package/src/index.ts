@@ -4,8 +4,8 @@ import { PullRequest } from "@octokit/webhooks-definitions/schema";
 
 try {
 
+	console.log(github.context);
 	if (github.context.eventName !== "pull_request") {
-		console.log(github.context);
 		throw "Not a pull request";
 	}
 
