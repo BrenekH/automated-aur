@@ -2,9 +2,13 @@ name: 'Build package'
 description: 'Build an Arch Linux package and run checks against it.'
 
 inputs:
-  package-dir:  # id of input
+  package-dir:
     description: 'Package to build'
     required: true
+
+outputs:
+  result:
+    description: 'The result of the checks that were run'
 
 runs:
   using: 'docker'

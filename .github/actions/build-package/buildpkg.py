@@ -13,45 +13,52 @@ def build(pkg_dir_str: str) -> bool:
 		# Copy PKGBUILD and everything in the manifest.include list to a new directory in /tmp.
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(td))
 
-		makepkg_proc = subprocess.run(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=td, stdout=subprocess.PIPE, universal_newlines=True)
+		print("[INFO] Running makepkg")
+		makepkg_proc = subprocess.run(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
-		pkgbuild_namcap_proc = subprocess.run(["namcap", "-im", "PKGBUILD"], cwd=td, stdout=subprocess.PIPE, universal_newlines=True)
+		print("[INFO] Running namcap against PKGBUILD")
+		pkgbuild_namcap_proc = subprocess.run(["namcap", "-i", "PKGBUILD"], cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
 		if makepkg_proc.returncode != 0:
-			print(f"namcap PKGBUILD: {pkgbuild_namcap_proc.stdout}")
-			print(f"Skipping remaning checks: makepkg returned a non-zero exit code {makepkg_proc.returncode}\n{makepkg_proc.stdout}\n{makepkg_proc.stderr}")
-			return False
+			check_results = f"makepkg:\nStdout:\n{makepkg_proc.stdout}\nStderr:\n{makepkg_proc.stderr}\n"
+			check_results += f"namcap PKGBUILD:\nStdout:\n{pkgbuild_namcap_proc.stdout}\nStderr:\n{pkgbuild_namcap_proc.stdout}\n"
+			check_results += f"Skipping remaining checks: makepkg returned a non-zero exit code {makepkg_proc.returncode}"
+			print(f"Skipping remaining checks: makepkg returned a non-zero exit code {makepkg_proc.returncode}")
+			return check_results
 
 		# Find the built package
 		built_pkg_file = str(list(Path(td).glob("*.pkg.tar.zst"))[0])
 
-		pkg_namcap_proc = subprocess.run(["namcap", "-im", built_pkg_file], cwd=td, stdout=subprocess.PIPE, universal_newlines=True)
+		print("[INFO] Running namcap against generated package")
+		pkg_namcap_proc = subprocess.run(["namcap", "-i", built_pkg_file], cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
-		pacman_U_proc = subprocess.run(["sudo", "pacman", "-U", "--noconfirm", built_pkg_file], cwd=td, universal_newlines=True)
+		print("[INFO] Installing built package")
+		pacman_U_proc = subprocess.run(["sudo", "pacman", "-U", "--noconfirm", built_pkg_file], cwd=td, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
 	# Run manifest.testCmd.
 	testCmd = None
 	if (testCmd := manifest["testCmd"]) != None:
 		if type(testCmd) == type([]):
-			testCmd_proc = subprocess.run(testCmd, shell=True, stdout=subprocess.PIPE, universal_newlines=True)
+			print("[INFO] Running user-defined testCmd")
+			testCmd_proc = subprocess.run(testCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 		else:
-			print("testCmd must be an array")
+			print("[ERROR] testCmd must be an array or null")
+			sys.exit(1)
 
-	if makepkg_proc.returncode != 0: print(f"makepkg: {makepkg_proc.stdout}\n{makepkg_proc.stderr}")
-	print(f"namcap PKGBUILD: {pkgbuild_namcap_proc.stdout}\n{pkgbuild_namcap_proc.stdout}")
-	print(f"namcap *.pkg.tar.zst: {pkg_namcap_proc.stdout}\n{pkgbuild_namcap_proc.stderr}")
-	print(f"pacman -U: {pacman_U_proc.stdout}\n{pacman_U_proc.stderr}")
-	if testCmd != None: print(f"testCmd: {testCmd_proc.stdout}\n{testCmd_proc.stderr}")
+	check_results = ""
+	if makepkg_proc.returncode != 0:
+		check_results += f"makepkg:\nStdout:\n{makepkg_proc.stdout}\nStderr:\n{makepkg_proc.stderr}\n"
 
-	if not is_namcap_error_free(pkgbuild_namcap_proc.stdout) or \
-		not is_namcap_error_free(pkg_namcap_proc.stdout) or \
-		pkgbuild_namcap_proc.returncode != 0 or \
-		pkg_namcap_proc.returncode != 0 or \
-		pacman_U_proc.returncode != 0 or \
-		(testCmd != None and testCmd_proc.returncode != 0):
-		return False
+	check_results += f"namcap PKGBUILD:\nStdout:\n{pkgbuild_namcap_proc.stdout}\nStderr:\n{pkgbuild_namcap_proc.stdout}\n"
+	check_results += f"namcap *.pkg.tar.zst:\nStdout\n{pkg_namcap_proc.stdout}\nStderr:\n{pkgbuild_namcap_proc.stderr}\n"
 
-	return True
+	if pacman_U_proc.returncode != 0:
+		check_results += f"pacman -U:\nStdout:\n{pacman_U_proc.stdout}\nStderr:\n{pacman_U_proc.stderr}\n"
+
+	if testCmd != None and testCmd_proc.returncode != 0:
+		check_results += f"testCmd:\nStdout:\n{testCmd_proc.stdout}\nStderr:\n{testCmd_proc.stderr}\n"
+
+	return check_results
 
 def copy_files_to_dir(files: List[Path], dir: Path):
 	for f in files:
@@ -60,9 +67,11 @@ def copy_files_to_dir(files: List[Path], dir: Path):
 			continue
 		shutil.copy(f, dir / f.name)
 
-def is_namcap_error_free(output: str) -> bool:
-	return True
-
 if __name__ == "__main__":
-	if not build(sys.argv[1]):
-		sys.exit(1)
+	output = build(sys.argv[1])
+
+	if "--stdout" in sys.argv:
+		print(output)
+	else:
+		with open("/buildout/out.txt", "w") as f:
+			f.write(output)

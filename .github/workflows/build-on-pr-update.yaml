@@ -11,9 +11,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build package
+        id: build-package
         uses: ./.github/actions/build-package
         with:
           package-dir: 'pkgs/beryl'
+
+      - name: Echo output
+        run: echo "${{ steps.build-package.outputs.result }}"
 
   publish-beryl:
     runs-on: [self-hosted]

@@ -7,6 +7,7 @@ RUN pacman -Syu --noconfirm &&\
  useradd builder -m &&\
  passwd -d builder &&\
  printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers &&\
+ mkdir /buildout && chown -R builder:builder /buildout &&\
  chmod +x /entrypoint.sh
 
 USER builder
