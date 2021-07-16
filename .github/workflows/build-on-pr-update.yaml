@@ -13,6 +13,10 @@ jobs:
         uses: actions/checkout@v2
 
       # TODO: Identify which package was updated, and error out if more than was modified
+      - name: Identify modified package
+        uses: ./.github/actions/identify-modified-package
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build package
         id: build-package

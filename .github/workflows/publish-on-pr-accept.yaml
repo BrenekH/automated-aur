@@ -5,7 +5,7 @@ on:
    types: [labeled]
 
 jobs:
-  output:
+  publish:
     runs-on: [self-hosted]
     if: github.event.label.name == 'lgtm'
 
@@ -16,6 +16,8 @@ jobs:
       # TODO: Identify which package was updated and fail if there are more than one
       - name: Identify modified package
         uses: ./.github/actions/identify-modified-package
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to AUR
         uses: ./.github/actions/publish-package
