@@ -3,7 +3,7 @@ FROM archlinux:base-devel
 COPY entrypoint.sh /
 
 RUN pacman -Syu --noconfirm &&\
- pacman -S --noconfirm --needed python namcap sudo git &&\
+ pacman -S --noconfirm --needed python namcap sudo git openssh &&\
  useradd builder -m &&\
  passwd -d builder &&\
  printf 'builder ALL=(ALL) ALL\n' | tee -a /etc/sudoers &&\
