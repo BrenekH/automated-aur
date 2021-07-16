@@ -12,17 +12,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # TODO: Identify which package was updated, and error out if more than was modified
       - name: Identify modified package
+        id: modded-pkg
         uses: ./.github/actions/identify-modified-package
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build package
         id: build-package
         uses: ./.github/actions/build-package
         with:
-          package-dir: 'pkgs/beryl'
+          package-dir: ${{ steps.modded-pkg.outputs.package }}
 
       - name: Echo output
         run: echo "${{ steps.build-package.outputs.result }}"

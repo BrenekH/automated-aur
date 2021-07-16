@@ -2,7 +2,7 @@ name: 'Identify Modified Package'
 description: 'Figure out which package has modifications and return it.'
 
 inputs:
-  token:
+  github-token:
     description: 'GitHub Token'
     required: true
 

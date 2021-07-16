@@ -10,16 +10,26 @@ try {
 	}
 
 	// const pr = context.payload.pull_request as PullRequest;
-	const octokit = github.getOctokit(core.getInput("token"));
+	const octokit = github.getOctokit(core.getInput("github-token"));
 
-	octokit.rest.pulls.listFiles({
+	const resp = await octokit.rest.pulls.listFiles({
 		...context.repo,
 		pull_number: context.payload.pull_request?.number as number,
-	}).then((value) => {
-		console.log(value);
-	}).catch((error) => {
-		core.setFailed(error);
+	})
+
+	let moddedPackages: string[] = [];
+	resp.data.forEach((file) => {
+		const splitFName = file.filename.split("/");
+		if (splitFName[0] === "pkgs") {
+			moddedPackages.push(`${splitFName[0]}/${splitFName[1]}`)
+		}
 	});
+
+	if (moddedPackages.length > 1) {
+		throw "More than one modified package.";
+	}
+
+	core.setOutput("package", moddedPackages[0]);
 
 } catch (error) {
 	core.setFailed(error);
