@@ -74,4 +74,4 @@ if __name__ == "__main__":
 		print(output)
 	else:
 		with open("/buildout/out.txt", "w") as f:
-			f.write(output)
+			f.write(output.replace("\n", "\\n"))
