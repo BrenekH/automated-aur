@@ -20,7 +20,9 @@ def main(_package_dir: str):
 		subprocess.check_call(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=git_td)
 
 		# Recreate `.SRCINFO` using `makepkg --printsrcinfo > .SRCINFO`.
-		subprocess.check_call(["makepkg", "--printsrcinfo", ">", ".SRCINFO"], cwd=git_td, shell=True)
+		src_info = subprocess.check_output(["makepkg", "--printsrcinfo"], cwd=git_td, universal_newlines=True)
+		with (Path(git_td) / ".SRCINFO").open("w") as f:
+			f.write(src_info)
 
 		# TODO: Ensure proper `.gitignore` file is in the repo (useful for new packages, not yet uploaded).
 
