@@ -12,21 +12,25 @@ try {
 	const pr = context.payload as PullRequest;
 	const octokit = github.getOctokit(core.getInput("token"));
 
-	console.log(pr.diff_url);
+	octokit.auth;
 
-	octokit.request(pr.diff_url).then((value) => {
-		console.log(value);
-	}).catch((error) => {
-		core.setFailed(error);
-	});
+	console.log(pr);
 
-	console.log(pr.patch_url);
+	// console.log(pr.diff_url);
 
-	octokit.request(pr.patch_url).then((value) => {
-		console.log(value);
-	}).catch((error) => {
-		core.setFailed(error);
-	});
+	// octokit.request(pr.diff_url).then((value) => {
+	// 	console.log(value);
+	// }).catch((error) => {
+	// 	core.setFailed(error);
+	// });
+
+	// console.log(pr.patch_url);
+
+	// octokit.request(pr.patch_url).then((value) => {
+	// 	console.log(value);
+	// }).catch((error) => {
+	// 	core.setFailed(error);
+	// });
 
 } catch (error) {
 	core.setFailed(error);
