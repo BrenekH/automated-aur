@@ -21,7 +21,8 @@ def main(_package_dir: str):
 
 		# TODO: Ensure proper `.gitignore` file is in the repo (useful for new packages, not yet uploaded).
 
-		# TODO: Force-add all modified files to the repo
+		# Force-add all modified files to the repo
+		subprocess.check_call(["git", "add", "-f"] +  ["PKGBUILD"] + manifest["include"],  cwd=git_td)
 
 		# TODO: Push to AUR
 
