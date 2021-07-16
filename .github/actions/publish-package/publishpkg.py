@@ -17,7 +17,7 @@ def main(_package_dir: str):
 		copy_files_to_dir([pkg_dir / "PKGBUILD"] + [pkg_dir / f for f in manifest["include"]], Path(git_td))
 
 		# Allow makepkg to succeed without polluting --printsrcinfo
-		subprocess.check_call(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=git_td)
+		# subprocess.check_call(["makepkg", "-sm", "--noconfirm", "--noprogressbar"], cwd=git_td)
 
 		# Recreate `.SRCINFO` using `makepkg --printsrcinfo > .SRCINFO`.
 		src_info = subprocess.check_output(["makepkg", "--printsrcinfo"], cwd=git_td, universal_newlines=True)
