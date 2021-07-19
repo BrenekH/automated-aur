@@ -27,6 +27,16 @@ jobs:
       - name: Echo output
         run: echo "${{ steps.build-package.outputs.result }}"
 
-      # TODO: Send build results to PR as a comment
+      # Send build results to PR as a comment
+      - name: Comment build results
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "${{ steps.build-package.outputs.result }}"
+            })
 
       # TODO: Fail build if makepkg, pacman, or testCmd fail (will need extra output from buildpkg.py)
