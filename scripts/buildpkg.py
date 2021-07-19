@@ -54,9 +54,6 @@ def build(pkg_dir_str: str) -> bool:
 	return True
 
 def copy_files_to_dir(files: List[Path], dir: Path):
-	print(files, dir)
-	# TODO: Implement
-
 	for f in files:
 		if f.is_absolute():
 			print(f"{f} is an absolute Path. It will not be copied.")

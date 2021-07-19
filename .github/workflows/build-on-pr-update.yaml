@@ -28,3 +28,5 @@ jobs:
         run: echo "${{ steps.build-package.outputs.result }}"
 
       # TODO: Send build results to PR as a comment
+
+      # TODO: Fail build if makepkg, pacman, or testCmd fail (will need extra output from buildpkg.py)
