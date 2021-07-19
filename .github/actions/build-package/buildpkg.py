@@ -73,5 +73,5 @@ if __name__ == "__main__":
 	if "--normal" in sys.argv:
 		print(output)
 	else:
-		output = output.replace("\n", "\\n")
+		output = output.replace("\n", "\\n").replace('"', '\\"')
 		print(f"::set-output name=result::{output}")
