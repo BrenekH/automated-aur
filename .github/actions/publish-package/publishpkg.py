@@ -44,7 +44,7 @@ def main(_package_dir: str):
 
 		# Push to AUR
 		print("[INFO] Pushing to AUR")
-		subprocess.check_call(["git", "push"],  cwd=git_td)
+		# subprocess.check_call(["git", "push"],  cwd=git_td)
 
 	return
 
