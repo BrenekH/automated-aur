@@ -50,4 +50,16 @@ jobs:
             })
 
       - name: Merge PR
-        run: echo "Hi"
+        uses: "actions/github-script@v4"
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          script: |
+            const pullRequest = context.payload.pull_request
+            const repository = context.repo
+
+            await github.pulls.merge({
+              merge_method: "merge",
+              owner: repository.owner,
+              pull_number: pullRequest.number,
+              repo: repository.repo,
+            })
