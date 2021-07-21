@@ -1,5 +1,5 @@
 #!/bin/env python3
-import json, shutil, subprocess, sys, tempfile
+import json, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 from typing import List
 
@@ -38,8 +38,8 @@ def main(_package_dir: str):
 		subprocess.check_call(["git", "add", "-f"] + ["PKGBUILD", ".SRCINFO", ".gitignore"] + manifest["include"],  cwd=git_td)
 
 		print("[INFO] Committing")
-		# TODO: Generate a better commit message
-		subprocess.check_call(["git", "commit", "-m", f"Update {_package_dir.replace('pkgs/', '')} (automatic)"], cwd=git_td)
+		commit_msg = gen_commit_msg(git_td) + ["-m", "Automatically committed from https://github.com/BrenekH/automated-aur."]
+		subprocess.check_call(["git", "commit"] + commit_msg, cwd=git_td)
 
 		# Push to AUR
 		print("[INFO] Pushing to AUR")
@@ -53,6 +53,29 @@ def copy_files_to_dir(files: List[Path], dir: Path):
 			print(f"{f} is an absolute Path. It will not be copied.")
 			continue
 		shutil.copy(f, dir / f.name)
+
+def gen_commit_msg(cwd) -> List[str]:
+	changes = subprocess.check_output(["git", "commit", "--short"], universal_newlines=True, cwd=cwd)
+
+	if "PKGBUILD" in changes:
+		pkgbuild_diff = subprocess.check_output(["git", "diff", "HEAD~1", "PKGBUILD"], cwd=cwd, universal_newlines=True)
+
+		pkgver_match = re.search(r"-pkgver=.*\n\+pkgver=(.*)", pkgbuild_diff)
+		pkgrel_match = re.search(r"-pkgrel=.*\n\+pkgrel=(.*)", pkgbuild_diff)
+
+		if pkgver_match is not None or pkgrel_match is not None:
+			# Use an "Update commit" format. (ex. "Update to {version}")
+			with (Path(cwd) / "PKGBUILD").open("r") as f:
+				pkgbuild_contents = f.read()
+
+			pkgver = re.search(r"pkgver=(.*)", pkgbuild_contents).group()
+			pkgrel = re.search(r"pkgrel=(.*)", pkgbuild_contents).group()
+
+			return ["-m", f"Update to {pkgver}-{pkgrel}"]
+
+	# TODO: Use PR title as commit title (maybe description as well)
+
+	return ["-m", "Changed files"]
 
 if __name__ == "__main__":
 	main(sys.argv[1])
