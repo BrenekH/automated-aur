@@ -10,7 +10,7 @@ depends=('electron')
 makedepends=('nodejs' 'npm')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/BrenekH/beryl/archive/refs/tags/v$pkgver.tar.gz" "beryl" "beryl.desktop" "bipa.xml" "berylprof.xml")
 sha256sums=('b58e96749c475b061b036240dccb37b84724d713e9d27368adb4f14d74ebcf35'
-            '64ba0a65ff8fe1bfb2ae2eea4f821e245c00a694fa080956c243d3ab81bd1edb'
+            'd03d476c2f28b0c958ccaf9a5182c05e288f0e213ad760e3e14e9cc2f95d47f0'
             '715683464f03fa7d52860eb969c993402d777b9487595f3eb8169b269c17acbe'
             '7bfcda7056e131630771152f2c51d48e24ae94f4eb30795ef35d9120dfb10853'
             'c7fb876af2aee7e85f43a022fe0931d879c190ee585f9c9df22188514c6db584')
