@@ -25,8 +25,29 @@ jobs:
           package-dir: ${{ steps.modded-pkg.outputs.package }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Comment on PR
-        run: echo "Hi"
+      - name: Comment on PR (Success)
+        uses: actions/github-script@v4
+        if: ${{ success() }}
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Successfully uploaded new data for the ${{ steps.modded-pkg.outputs.package }} package to the AUR."
+            })
 
-      - name: Close PR
+      - name: Comment on PR (Failure)
+        uses: actions/github-script@v4
+        if: ${{ failure() }}
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Could not upload to the AUR. Check out [the Actions log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details."
+            })
+
+      - name: Merge PR
         run: echo "Hi"

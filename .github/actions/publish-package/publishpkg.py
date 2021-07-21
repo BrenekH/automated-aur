@@ -38,6 +38,7 @@ def main(_package_dir: str):
 		subprocess.check_call(["git", "add", "-f"] + ["PKGBUILD", ".SRCINFO", ".gitignore"] + manifest["include"],  cwd=git_td)
 
 		print("[INFO] Committing")
+		# TODO: Generate a better commit message
 		subprocess.check_call(["git", "commit", "-m", f"Update {_package_dir.replace('pkgs/', '')} (automatic)"], cwd=git_td)
 
 		# Push to AUR
