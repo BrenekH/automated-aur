@@ -39,6 +39,7 @@ def main(_package_dir: str):
 
 		print("[INFO] Committing")
 		commit_msg = gen_commit_msg(git_td) + ["-m", "Automatically committed from https://github.com/BrenekH/automated-aur."]
+		print(commit_msg)
 		subprocess.check_call(["git", "commit"] + commit_msg, cwd=git_td)
 
 		# Push to AUR
@@ -73,7 +74,7 @@ def gen_commit_msg(cwd) -> List[str]:
 
 			return ["-m", f"Update to {pkgver}-{pkgrel}"]
 
-	# TODO: Use PR title as commit title (maybe description as well)
+	# TODO: Use PR title as commit title (possibly description as well?)
 
 	return ["-m", "Changed files"]
 
