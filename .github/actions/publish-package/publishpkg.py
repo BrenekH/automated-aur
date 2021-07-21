@@ -75,7 +75,7 @@ def gen_commit_msg(cwd) -> List[str]:
 			return ["-m", f"Update to {pkgver}-{pkgrel}"]
 
 	# TODO: Use PR title as commit title (possibly description as well?)
-	with Path(os.getenv("GITHUB_EVENT_PATH")) as f:
+	with Path(os.getenv("GITHUB_EVENT_PATH")).open("r") as f:
 		event = json.load(f)
 
 	print(event)
