@@ -74,13 +74,11 @@ def gen_commit_msg(cwd) -> List[str]:
 
 			return ["-m", f"Update to {pkgver}-{pkgrel}"]
 
-	# TODO: Use PR title as commit title (possibly description as well?)
+	# Use PR title as commit title
 	with Path(os.getenv("GITHUB_EVENT_PATH")).open("r") as f:
 		event = json.load(f)
 
-	print(event)
-
-	return ["-m", "Changed files"]
+	return ["-m", event["pull_request"]["title"]]
 
 if __name__ == "__main__":
 	main(sys.argv[1])
