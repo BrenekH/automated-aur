@@ -1,5 +1,5 @@
 #!/bin/env python3
-import json, re, shutil, subprocess, sys, tempfile
+import json, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 from typing import List
 
@@ -75,6 +75,10 @@ def gen_commit_msg(cwd) -> List[str]:
 			return ["-m", f"Update to {pkgver}-{pkgrel}"]
 
 	# TODO: Use PR title as commit title (possibly description as well?)
+	with Path(os.getenv("GITHUB_EVENT_PATH")) as f:
+		event = json.load(f)
+
+	print(event)
 
 	return ["-m", "Changed files"]
 
