@@ -49,17 +49,17 @@ jobs:
               body: "Could not upload to the AUR. Check out [the Actions log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details."
             })
 
-      # - name: Merge PR
-      #   uses: "actions/github-script@v4"
-      #   with:
-      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
-      #     script: |
-      #       const pullRequest = context.payload.pull_request
-      #       const repository = context.repo
+      - name: Merge PR
+        uses: "actions/github-script@v4"
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          script: |
+            const pullRequest = context.payload.pull_request
+            const repository = context.repo
 
-      #       await github.pulls.merge({
-      #         merge_method: "merge",
-      #         owner: repository.owner,
-      #         pull_number: pullRequest.number,
-      #         repo: repository.repo,
-      #       })
+            await github.pulls.merge({
+              merge_method: "merge",
+              owner: repository.owner,
+              pull_number: pullRequest.number,
+              repo: repository.repo,
+            })
