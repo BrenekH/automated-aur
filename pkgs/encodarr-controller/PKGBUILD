@@ -19,6 +19,9 @@ build() {
 	export CGO_CXXFLAGS="${CXXFLAGS}"
 	export CGO_LDFLAGS="${LDFLAGS}"
 
+	# Store go.mod cache in temp dir (for those times when the home directory is locked down)
+	export GOMODCACHE="$(mktemp -d)"
+
 	go build \
 	  -trimpath \
 	  -buildmode=pie \
@@ -26,13 +29,15 @@ build() {
 	  -modcacherw \
 	  -ldflags "-X 'github.com/BrenekH/encodarr/controller/options.Version=$pkgver' -linkmode external -extldflags \"${LDFLAGS}\"" \
 	  -o encodarr-controller main.go
+
+	# Clean up Go Modules cache
+	go clean -modcache
 }
 
 check() {
 	cd "encodarr-$pkgver/controller"
 
 	export TEMPDIR=$(mktemp -d)
-	echo "${TEMPDIR}"
 
 	go test --config-dir "${TEMPDIR}" ./...
 
