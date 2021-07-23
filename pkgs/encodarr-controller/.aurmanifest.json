@@ -1,0 +1,9 @@
+{
+	"name": "encodarr-controller",
+	"testCmd": null,
+	"include": [],
+	"automaticUpdates": {
+		"type": "github",
+		"url": "https://github.com/BrenekH/encodarr"
+	}
+}
