@@ -31,9 +31,13 @@ build() {
 check() {
 	cd "encodarr-$pkgver/controller"
 
-	go test --config-dir "$(pwd)" ./...
+	export TEMPDIR=$(mktemp -d)
 
-	./encodarr-controller --config-dir "$(pwd)" --version
+	go test --config-dir "${TEMPDIR}" ./...
+
+	./encodarr-controller --config-dir "${TEMPDIR}" --version
+
+	rm -rf "${TEMPDIR}"
 }
 
 package() {
