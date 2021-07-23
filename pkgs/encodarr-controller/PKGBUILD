@@ -31,9 +31,9 @@ build() {
 check() {
 	cd "encodarr-$pkgver/controller"
 
-	go test --config-dir $(pwd) ./...
+	go test --config-dir "$(pwd)" ./...
 
-	./encodarr-controller --version
+	./encodarr-controller --config-dir "$(pwd)" --version
 }
 
 package() {
