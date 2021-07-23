@@ -19,8 +19,9 @@ build() {
 	export CGO_CXXFLAGS="${CXXFLAGS}"
 	export CGO_LDFLAGS="${LDFLAGS}"
 
-	# Store go.mod cache in temp dir (for those times when the home directory is locked down)
+	# Store go caches in temp dirs (for those times when the home directory is locked down)
 	export GOMODCACHE="$(mktemp -d)"
+	export GOCACHE="$(mktemp -d)"
 
 	go build \
 	  -trimpath \
@@ -30,8 +31,9 @@ build() {
 	  -ldflags "-X 'github.com/BrenekH/encodarr/controller/options.Version=$pkgver' -linkmode external -extldflags \"${LDFLAGS}\"" \
 	  -o encodarr-controller main.go
 
-	# Clean up Go Modules cache
+	# Clean up Go caches
 	go clean -modcache
+	go clean -cache
 }
 
 check() {
