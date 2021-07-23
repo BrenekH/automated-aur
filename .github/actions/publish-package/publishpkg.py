@@ -59,20 +59,23 @@ def gen_commit_msg(cwd) -> List[str]:
 	changes = subprocess.check_output(["git", "commit", "--short"], universal_newlines=True, cwd=cwd)
 
 	if "PKGBUILD" in changes:
-		pkgbuild_diff = subprocess.check_output(["git", "diff", "HEAD~1", "PKGBUILD"], cwd=cwd, universal_newlines=True)
+		try:
+			pkgbuild_diff = subprocess.check_output(["git", "diff", "HEAD~1", "PKGBUILD"], cwd=cwd, universal_newlines=True)
 
-		pkgver_match = re.search(r"-pkgver=.*\n\+pkgver=(.*)", pkgbuild_diff)
-		pkgrel_match = re.search(r"-pkgrel=.*\n\+pkgrel=(.*)", pkgbuild_diff)
+			pkgver_match = re.search(r"-pkgver=.*\n\+pkgver=(.*)", pkgbuild_diff)
+			pkgrel_match = re.search(r"-pkgrel=.*\n\+pkgrel=(.*)", pkgbuild_diff)
 
-		if pkgver_match is not None or pkgrel_match is not None:
-			# Use an "Update commit" format. (ex. "Update to {version}")
-			with (Path(cwd) / "PKGBUILD").open("r") as f:
-				pkgbuild_contents = f.read()
+			if pkgver_match is not None or pkgrel_match is not None:
+				# Use an "Update commit" format. (ex. "Update to {version}")
+				with (Path(cwd) / "PKGBUILD").open("r") as f:
+					pkgbuild_contents = f.read()
 
-			pkgver = re.search(r"pkgver=(.*)", pkgbuild_contents).group()
-			pkgrel = re.search(r"pkgrel=(.*)", pkgbuild_contents).group()
+				pkgver = re.search(r"pkgver=(.*)", pkgbuild_contents).group()
+				pkgrel = re.search(r"pkgrel=(.*)", pkgbuild_contents).group()
 
-			return ["-m", f"Update to {pkgver}-{pkgrel}"]
+				return ["-m", f"Update to {pkgver}-{pkgrel}"]
+		except subprocess.CalledProcessError:
+			pass
 
 	# Use PR title as commit title
 	with Path(os.getenv("GITHUB_EVENT_PATH")).open("r") as f:
