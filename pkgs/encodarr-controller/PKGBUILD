@@ -41,7 +41,7 @@ check() {
 
 	export TEMPDIR=$(mktemp -d)
 
-	go test --config-dir "${TEMPDIR}" ./...
+	ENCODARR_CONFIG_DIR="${TEMPDIR}" go test ./...
 
 	./encodarr-controller --config-dir "${TEMPDIR}" --version
 
