@@ -31,7 +31,7 @@ build() {
 check() {
 	cd "encodarr-$pkgver/controller"
 
-	go test ./...
+	go test --config $(pwd) ./...
 
 	./encodarr-controller --version
 }
