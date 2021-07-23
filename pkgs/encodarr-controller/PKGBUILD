@@ -39,13 +39,13 @@ build() {
 check() {
 	cd "encodarr-$pkgver/controller"
 
-	export TEMPDIR=$(mktemp -d)
+	export ENCODARR_CONFIG_DIR=$(mktemp -d)
 
-	ENCODARR_CONFIG_DIR="${TEMPDIR}" go test ./...
+	go test ./...
 
-	./encodarr-controller --config-dir "${TEMPDIR}" --version
+	./encodarr-controller --version
 
-	rm -rf "${TEMPDIR}"
+	rm -rf "${ENCODARR_CONFIG_DIR}"
 }
 
 package() {
