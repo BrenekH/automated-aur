@@ -39,9 +39,13 @@ build() {
 check() {
 	cd "encodarr-$pkgver/runner"
 
+	export ENCODARR_CONFIG_DIR=$(mktemp -d)
+
 	go test ./...
 
 	./encodarr-runner --version
+
+	rm -rf "${ENCODARR_CONFIG_DIR}"
 }
 
 package() {
