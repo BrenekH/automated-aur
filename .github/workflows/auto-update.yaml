@@ -15,3 +15,5 @@ jobs:
 
       - name: Update packages
         uses: ./.github/actions/update-package-via-manifest
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
