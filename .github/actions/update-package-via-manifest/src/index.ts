@@ -67,7 +67,15 @@ try {
 
 		// git add and commit updated PKGBUILD
 		execSync(`git add ${pkgbuildPath}`, {stdio: 'inherit'})
-		execSync(`GIT_AUTHOR_NAME="github-actions[bot]" GIT_AUTHOR_EMAIL="41898282+github-actions[bot]@users.noreply.github.com" git commit -m "Update ${manifest.name} to ${latestVersion}"`)
+		execSync(`git commit -m "Update ${manifest.name} to ${latestVersion}"`, {
+			env: {
+				GIT_AUTHOR_NAME: "github-actions[bot]",
+				GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com",
+				GIT_COMMITTER_NAME: "github-actions[bot]",
+				GIT_COMMITTER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com",
+				EMAIL: "41898282+github-actions[bot]@users.noreply.github.com",
+			}
+		})
 
 		// Push changes to GitHub
 		execSync(`git push origin ${branchName}`, {stdio: 'inherit'})
