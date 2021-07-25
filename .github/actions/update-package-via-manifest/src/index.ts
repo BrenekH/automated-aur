@@ -39,6 +39,7 @@ try {
 				continue
 		}
 
+		core.info(`PKGBUILD: '${pkgbuildVersion}' Latest: '${latestVersion}'`)
 		if (pkgbuildVersion === latestVersion) {
 			continue
 		}
