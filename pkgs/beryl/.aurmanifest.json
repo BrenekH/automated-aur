@@ -9,6 +9,6 @@
 	],
 	"automaticUpdates": {
 		"type": "github",
-		"url": "https://github.com/BrenekH/beryl"
+		"repo": "BrenekH/beryl"
 	}
 }
