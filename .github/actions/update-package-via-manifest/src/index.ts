@@ -3,8 +3,11 @@ import * as github from "@actions/github";
 import { promise as glob } from "glob-promise";
 import * as fs from "fs";
 import * as path from "path";
+import { execSync } from "child_process";
 
 try {
+	const context = github.context;
+
 	// Identify all packages in the pkgs directory
 	const manifests = await glob("pkgs/**/.aurmanifest.json")
 
@@ -38,7 +41,35 @@ try {
 			continue;
 		}
 
-		// TODO: Open a PR with updates
+		// Create new branch
+		const branchName = `bot/${manifest.name}/${latestVersion}`;
+		execSync(`git checkout -b ${branchName}`, {stdio: 'inherit'})
+
+		let pkgbuildContents: string = fs.readFileSync(path.join(manifestPath.replace("/.aurmanifest.json", ""), "PKGBUILD")).toString();
+
+		// Update PKGBUILD with new version (pkgver to latestVersion and pkgrel to 1)
+		pkgbuildContents.replace(/^pkgver=.*/m, `pkgver=${latestVersion}`)
+		pkgbuildContents.replace(/^pkgrel=.*/m, "pkgrel=1")
+
+		// TODO: Update checksums in PKGBUILD (makepkg -g outputs the correct array to stdout)
+
+		// git add updated PKGBUILD
+		execSync(`git add ${path.join(manifestPath.replace("/.aurmanifest.json", ""), "PKGBUILD")}`, {stdio: 'inherit'})
+
+		// Push changes to GitHub
+		execSync(`git push origin ${branchName}`, {stdio: 'inherit'})
+
+		// Create a pull request with the changes
+		const octokit = github.getOctokit(core.getInput("github-token"));
+		octokit.rest.pulls.create({
+			...context.repo,
+			head: "",
+			base: "master",
+			maintainer_can_modify: true,
+		})
+
+		// Switch back to master branch
+		execSync(`git checkout master`, {stdio: 'inherit'})
 	}
 
 } catch (error) {
