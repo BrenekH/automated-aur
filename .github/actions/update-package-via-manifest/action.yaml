@@ -1,0 +1,15 @@
+name: 'Update Packages'
+description: 'Use .aurmanifest.json to automatically open PRs with updated package versions.'
+
+inputs:
+  github-token:
+    description: 'GitHub Token'
+    required: true
+
+outputs:
+  package:
+    description: 'The result of the search.'
+
+runs:
+  using: 'node12'
+  main: 'lib/index.js'
