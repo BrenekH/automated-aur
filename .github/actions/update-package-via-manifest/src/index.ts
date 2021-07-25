@@ -32,8 +32,7 @@ try {
 					core.warning(`Failed to get latest version from GitHub (${manifestPath}).`)
 					continue
 				}
-				ghVersion.replace(/^v/m, "") // Remove leading v idiom
-				latestVersion = ghVersion
+				latestVersion = ghVersion.replace(/^v/m, "") // Remove leading v idiom
 				break
 			default:
 				core.warning(`Unknown automaticUpdates type '${manifest.automaticUpdates}' in ${manifestPath}`)
@@ -54,8 +53,8 @@ try {
 		let pkgbuildContents: string = fs.readFileSync(pkgbuildPath).toString()
 
 		// Update PKGBUILD with new version (pkgver to latestVersion and pkgrel to 1)
-		pkgbuildContents.replace(/^pkgver=.*/m, `pkgver=${latestVersion}`)
-		pkgbuildContents.replace(/^pkgrel=.*/m, "pkgrel=1")
+		pkgbuildContents = pkgbuildContents.replace(/^pkgver=.*/m, `pkgver=${latestVersion}`)
+		pkgbuildContents = pkgbuildContents.replace(/^pkgrel=.*/m, "pkgrel=1")
 
 		fs.writeFileSync(pkgbuildPath, pkgbuildContents)
 
