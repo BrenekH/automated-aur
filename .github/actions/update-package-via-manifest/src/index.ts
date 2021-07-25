@@ -44,7 +44,7 @@ try {
 		}
 
 		// Change permissions so that everything "should be" writable
-		execSync("sudo chmod -R 777 $(pwd)", {stdio: 'inherit'})
+		execSync("sudo chown -R builder:builder $(pwd)", {stdio: 'inherit'})
 
 		// Create new branch
 		const branchName = `bot/${manifest.name}/${latestVersion}`
