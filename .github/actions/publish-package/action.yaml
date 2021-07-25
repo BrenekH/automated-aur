@@ -11,7 +11,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'ghcr.io/brenekh/auto-aur-publish-package:latest'
   args:
     - ${{ inputs.package-dir }}
     - ${{ inputs.ssh-private-key }}

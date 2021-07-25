@@ -12,6 +12,6 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'ghcr.io/brenekh/auto-aur-build-package:latest'
   args:
     - ${{ inputs.package-dir }}
