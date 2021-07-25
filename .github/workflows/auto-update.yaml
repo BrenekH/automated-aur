@@ -1,0 +1,13 @@
+name: Automatically Update Package Versions
+
+on:
+  schedule:
+    - cron: '30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "hi"
