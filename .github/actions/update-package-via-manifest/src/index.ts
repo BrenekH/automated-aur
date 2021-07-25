@@ -102,12 +102,12 @@ try {
 function getVersionFromPKGBUILD(dir: string): string | undefined {
 	const fileContents: string = fs.readFileSync(path.join(dir, "PKGBUILD")).toString()
 
-	const matches = fileContents.match(/^pkgver=(.*)$/m)
+	const matches = /^pkgver=(.*)$/m.exec(fileContents)
 	if (matches === null) {
 		return undefined
 	}
 
-	return matches[0]
+	return matches[1]
 }
 
 async function getLatestVersionFromGithub(repo: string): Promise<string | undefined> {
