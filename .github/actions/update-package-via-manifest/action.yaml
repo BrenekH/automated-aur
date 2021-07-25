@@ -6,10 +6,8 @@ inputs:
     description: 'GitHub Token'
     required: true
 
-outputs:
-  package:
-    description: 'The result of the search.'
-
 runs:
-  using: 'node12'
-  main: 'lib/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github-token }}

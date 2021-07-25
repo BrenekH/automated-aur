@@ -53,6 +53,8 @@ try {
 
 		// TODO: Update checksums in PKGBUILD (makepkg -g outputs the correct array to stdout)
 
+		// TODO: Write updated PKGBUILD contents back to file
+
 		// git add updated PKGBUILD
 		execSync(`git add ${path.join(manifestPath.replace("/.aurmanifest.json", ""), "PKGBUILD")}`, {stdio: 'inherit'})
 
