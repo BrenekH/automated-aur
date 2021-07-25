@@ -32,6 +32,7 @@ try {
 					core.warning(`Failed to get latest version from GitHub (${manifestPath}).`)
 					continue
 				}
+				ghVersion.replace(/^v/m, "") // Remove leading v idiom
 				latestVersion = ghVersion
 				break
 			default:
@@ -66,7 +67,9 @@ try {
 
 		// git add and commit updated PKGBUILD
 		execSync(`git add ${pkgbuildPath}`, {stdio: 'inherit'})
-		execSync(`git config user.name "Actions User" && git config user.email "actions@github.com" && git commit -m "Update ${manifest.name} to ${latestVersion}"`)
+		execSync(`git config --global user.name "github-actions[bot]"`)
+		execSync(`git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"`)
+		execSync(`git commit -m "Update ${manifest.name} to ${latestVersion}"`)
 
 		// Push changes to GitHub
 		execSync(`git push origin ${branchName}`, {stdio: 'inherit'})
