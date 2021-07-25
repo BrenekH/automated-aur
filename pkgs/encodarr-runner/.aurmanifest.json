@@ -4,6 +4,6 @@
 	"include": [],
 	"automaticUpdates": {
 		"type": "github",
-		"url": "https://github.com/BrenekH/encodarr"
+		"url": "BrenekH/encodarr"
 	}
 }
