@@ -16,4 +16,4 @@ jobs:
       - name: Update packages
         uses: ./.github/actions/update-package-via-manifest
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PAT }} # Use a personal access token so that the build action will run when a PR is created.
