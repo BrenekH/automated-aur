@@ -1,12 +1,20 @@
 # Automated AUR
 
-This repository is meant to automate the upload of PKGBUILDs to the Arch Linux User Repository.
+Automated PKGBUILD uploads to the [Arch User Repository](https://aur.archlinux.org).
 
-## Workflow
+## How it works
 
-* First a PR is opened with changes to the PKGBUILD and other files to build the package.
+It all starts with a new pull request with a change in one of the packages.
+Github Actions will automatically build and test the changes and comment the results on the PR.
 
-* The build system will check the updates to make sure they build and pass namcap (and any other checks defined in the manifest).
-  * Build results will be reported back as a comment on the PR.
+As soon as the `lgtm` label is applied to the PR, Github Actions will generate the `.SRCINFO` file and push the files to the AUR.
 
-* If I'm happy with the results (and all checks are passing), a "LGTM!" comment or applying the lgtm tag will publish the package to the AUR, and merge/close the PR.
+### Automatic Updates
+
+Using the `.aurmanifest.json`, an hourly cron job will create new PRs for packages with new versions available.
+However, approval is still required using the `lgtm` label as normal.
+
+## Other notes
+
+To help with run times, the docker image actions are built from [BrenekH/automated-aur-docker](https://github.com/BrenekH/automated-aur-docker) and hosted using the Github Container Registry.
+The docker images are rebuilt every day at 01:00 UTC so that they are up-to-date with the daily [archlinux/archlinux](https://hub.docker.com/r/archlinux/archlinux) base image.
