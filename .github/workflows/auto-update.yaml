@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - run: git branch -r
+
+      - run: git ls-remote --heads origin
+
       - name: Update packages
         uses: ./.github/actions/update-package-via-manifest
         with:
