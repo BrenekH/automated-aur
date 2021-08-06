@@ -28,8 +28,8 @@ build() {
 	  -buildmode=pie \
 	  -mod=readonly \
 	  -modcacherw \
-	  -ldflags "-X 'github.com/BrenekH/encodarr/controller/options.Version=$pkgver' -linkmode external -extldflags \"${LDFLAGS}\"" \
-	  -o encodarr-controller main.go
+	  -ldflags "-X 'github.com/BrenekH/encodarr/controller/globals.Version=$pkgver' -linkmode external -extldflags \"${LDFLAGS}\"" \
+	  -o encodarr-controller cmd/main.go
 
 	# Clean up Go caches
 	go clean -modcache
