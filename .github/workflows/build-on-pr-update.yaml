@@ -46,7 +46,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "${{ steps.build-package.outputs.result }}"
+              body: "${{ steps.build-package.outputs.result }}" + "${{ steps.build-package.outputs.result }}"
             })
 
       # TODO: Fail build if makepkg, pacman, or testCmd fail (will need extra output from buildpkg.py)
