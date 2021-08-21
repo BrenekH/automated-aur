@@ -31,11 +31,15 @@ jobs:
           package-dir: ${{ steps.modded-pkg.outputs.package }}
 
       - name: Echo output
-        run: echo "${{ steps.build-package.outputs.result }}"
+        run: |
+          echo "${{ steps.build-package.outputs.result }}"
+          echo "${{ steps.test-package.outputs.result }}"
+          echo "${{ steps.test-package.outputs.failed }}"
 
       # Send build results to PR as a comment
       - name: Comment build results
         uses: actions/github-script@v4
+        if: always()
         with:
           script: |
             github.issues.createComment({
