@@ -1,0 +1,19 @@
+name: 'Test package'
+description: 'Run custom test command against an Arch Linux package.'
+
+inputs:
+  package-dir:
+    description: 'Package to test'
+    required: true
+
+outputs:
+  result:
+    description: 'The string result of the testCmd.'
+  failed:
+    description: "Set to 'true' if the command results in a non-zero exit code, otherwise it will be 'false'"
+
+runs:
+  using: 'docker'
+  image: 'ghcr.io/brenekh/auto-aur-test-package:latest'
+  args:
+    - ${{ inputs.package-dir }}
