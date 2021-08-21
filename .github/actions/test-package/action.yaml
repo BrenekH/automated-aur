@@ -1,0 +1,17 @@
+name: 'Test package'
+description: 'Run custom test command against an Arch Linux package.'
+
+inputs:
+  package-dir:
+    description: 'Package to test'
+    required: true
+
+outputs:
+  result:
+    description: 'The result of the checks that were run'
+
+runs:
+  using: 'docker'
+  image: 'ghcr.io/brenekh/auto-aur-test-package:latest'
+  args:
+    - ${{ inputs.package-dir }}
