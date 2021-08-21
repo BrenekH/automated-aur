@@ -24,6 +24,12 @@ jobs:
         with:
           package-dir: ${{ steps.modded-pkg.outputs.package }}
 
+      - name: Test package
+        id: test-package
+        uses: ./.github/actions/test-package
+        with:
+          package-dir: ${{ steps.modded-pkg.outputs.package }}
+
       - name: Echo output
         run: echo "${{ steps.build-package.outputs.result }}"
 
