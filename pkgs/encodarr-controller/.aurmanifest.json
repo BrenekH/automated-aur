@@ -1,6 +1,6 @@
 {
 	"name": "encodarr-controller",
-	"testCmd": "encodarr-controller --help && exit 1",
+	"testCmd": "encodarr-controller --help && echo \"Oh hi lol\" >&2",
 	"include": [],
 	"automaticUpdates": {
 		"type": "github",
