@@ -1,6 +1,6 @@
 {
 	"name": "encodarr-controller",
-	"testCmd": null,
+	"testCmd": "encodarr-controller --version",
 	"include": [],
 	"automaticUpdates": {
 		"type": "github",

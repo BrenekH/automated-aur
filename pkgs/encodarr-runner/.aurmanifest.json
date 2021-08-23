@@ -1,6 +1,6 @@
 {
 	"name": "encodarr-runner",
-	"testCmd": null,
+	"testCmd": "encodarr-runner --version",
 	"include": [],
 	"automaticUpdates": {
 		"type": "github",
