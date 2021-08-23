@@ -9,6 +9,8 @@ inputs:
 outputs:
   result:
     description: 'The result of the checks that were run'
+  failed:
+    description: "Set to 'true' if the command results in a non-zero exit code, otherwise it will be 'false'"
 
 runs:
   using: 'docker'
