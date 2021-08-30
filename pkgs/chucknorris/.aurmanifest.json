@@ -1,0 +1,9 @@
+{
+	"name": "chucknorris",
+	"testCmd": "chucknorris",
+	"include": [],
+	"automaticUpdates": {
+		"type": "github",
+		"repo": "kz6fittycent/Chuck_Norris"
+	}
+}
