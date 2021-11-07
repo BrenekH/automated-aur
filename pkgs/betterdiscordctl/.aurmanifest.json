@@ -1,0 +1,9 @@
+{
+	"name": "betterdiscordctl",
+	"testCmd": "betterdiscordctl --version",
+	"include": [],
+	"automaticUpdates": {
+		"type": "github",
+		"repo": "bb010g/betterdiscordctl"
+	}
+}
