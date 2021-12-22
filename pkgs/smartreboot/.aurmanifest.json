@@ -1,0 +1,9 @@
+{
+	"name": "smartreboot",
+	"testCmd": null,
+	"include": [],
+	"automaticUpdates": {
+		"type": "github",
+		"repo": "BrenekH/smartreboot"
+	}
+}
