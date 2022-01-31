@@ -1,0 +1,11 @@
+{
+	"name": "friends",
+	"testCmd": "friends --version",
+	"include": [
+		"friends"
+	],
+	"automaticUpdates": {
+		"type": "github",
+		"repo": "JacobEvelyn/friends"
+	}
+}
