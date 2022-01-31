@@ -4,8 +4,5 @@
 	"include": [
 		"friends"
 	],
-	"automaticUpdates": {
-		"type": "github",
-		"repo": "JacobEvelyn/friends"
-	}
+	"automaticUpdates": {}
 }
