@@ -49,8 +49,8 @@ check() {
 
 	go test ./...
 
-	./build/smartreboot --version
 	./build/smartreboot --help
+	./build/smartreboot --version
 }
 
 package() {
