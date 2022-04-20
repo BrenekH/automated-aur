@@ -1,0 +1,6 @@
+{
+	"name": "ngrok",
+	"testCmd": "ngrok --version",
+	"include": [],
+	"automaticUpdates": {}
+}
