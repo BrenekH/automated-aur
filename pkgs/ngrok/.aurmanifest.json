@@ -2,5 +2,8 @@
 	"name": "ngrok",
 	"testCmd": "ngrok --version",
 	"include": [],
-	"automaticUpdates": {}
+	"automaticUpdates": {
+		"type": "equinox",
+		"appID": "app_c3U4eZcDbjV"
+	}
 }
