@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-// import { PullRequest } from "@octokit/webhooks-definitions/schema";
 
 try {
 
@@ -9,7 +8,6 @@ try {
 		throw "Not a pull request";
 	}
 
-	// const pr = context.payload.pull_request as PullRequest;
 	const octokit = github.getOctokit(core.getInput("github-token"));
 
 	const resp = await octokit.rest.pulls.listFiles({
@@ -32,6 +30,6 @@ try {
 
 	core.setOutput("package", moddedPackages[0]);
 
-} catch (error) {
+} catch (error: any) {
 	core.setFailed(error);
 }
