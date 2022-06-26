@@ -38,11 +38,11 @@ jobs:
 
       # Send build results to PR as a comment
       - name: Comment build results
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         if: always()
         with:
           script: |
-            github.issues.createComment({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
