@@ -1,7 +1,9 @@
 {
 	"name": "ngrok",
 	"testCmd": "ngrok --version",
-	"include": [],
+	"include": [
+		"TERMS-OF-SERVICE.txt"
+	],
 	"automaticUpdates": {
 		"type": "equinox",
 		"appID": "app_c3U4eZcDbjV"
