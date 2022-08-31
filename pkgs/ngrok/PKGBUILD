@@ -1,7 +1,7 @@
 # Maintainer: Brenek Harrison <brenekharrison @ gmail d0t com>
-# Contributer: Daurnimator <daurnimator@archlinux.org>
-# Contributer: Bjorn Neergaard (neersighted) <bjorn@neersighted.com>
-# Contributer: Peter Sutton (foxxy) <foxxy@foxdogstudios.com>
+# Contributor: Daurnimator <daurnimator@archlinux.org>
+# Contributor: Bjorn Neergaard (neersighted) <bjorn@neersighted.com>
+# Contributor: Peter Sutton (foxxy) <foxxy@foxdogstudios.com>
 
 pkgname=ngrok
 pkgver=3.0.7
