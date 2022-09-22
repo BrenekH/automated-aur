@@ -1,15 +1,15 @@
-name: 'Identify Modified Package'
-description: 'Figure out which package has modifications and return it.'
+name: "Identify Modified Package"
+description: "Figure out which package has modifications and return it."
 
 inputs:
   github-token:
-    description: 'GitHub Token'
+    description: "GitHub Token"
     required: true
 
 outputs:
   package:
-    description: 'The result of the search.'
+    description: "The result of the search."
 
 runs:
-  using: 'node12'
-  main: 'lib/index.js'
+  using: "node16"
+  main: "lib/index.js"
