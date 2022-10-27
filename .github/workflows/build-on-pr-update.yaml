@@ -30,12 +30,6 @@ jobs:
         with:
           package-dir: ${{ steps.modded-pkg.outputs.package }}
 
-      - name: Echo output
-        run: |
-          echo "${{ steps.build-package.outputs.result }}"
-          echo "${{ steps.test-package.outputs.result }}"
-          echo "${{ steps.test-package.outputs.failed }}"
-
       - name: Hide previous build results
         uses: int128/hide-comment-action@v1
         if: always()
