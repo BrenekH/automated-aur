@@ -1,7 +1,7 @@
 name: Publish on PR Accept
 
 on:
-  pull_request:
+  pull_request_target: # We need pull_request_target so we have access to the repository's secrets.
     types: [labeled]
 
 jobs:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR. This is only safe because we require approval for every outside PR.
 
       - name: Identify modified package
         id: modded-pkg
