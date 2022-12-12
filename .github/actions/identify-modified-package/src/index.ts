@@ -4,7 +4,7 @@ import * as github from "@actions/github";
 try {
 
 	const context = github.context;
-	if (context.eventName !== "pull_request") {
+	if (context.eventName !== "pull_request" && context.eventName !== "pull_request_target") {
 		throw "Not a pull request";
 	}
 
