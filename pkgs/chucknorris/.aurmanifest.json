@@ -3,7 +3,7 @@
 	"testCmd": "chucknorris",
 	"include": [],
 	"automaticUpdates": {
-		"type": "github",
+		"type": "github-releases",
 		"repo": "kz6fittycent/Chuck_Norris"
 	}
 }

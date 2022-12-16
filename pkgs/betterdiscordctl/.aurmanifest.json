@@ -3,7 +3,7 @@
 	"testCmd": "betterdiscordctl --version",
 	"include": [],
 	"automaticUpdates": {
-		"type": "github",
+		"type": "github-releases",
 		"repo": "bb010g/betterdiscordctl"
 	}
 }

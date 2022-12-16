@@ -4,5 +4,8 @@
 	"include": [
 		"friends"
 	],
-	"automaticUpdates": {}
+	"automaticUpdates": {
+		"type": "github-tags",
+		"repo": "JacobEvelyn/friends"
+	}
 }

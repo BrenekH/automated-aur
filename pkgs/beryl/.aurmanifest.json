@@ -8,7 +8,7 @@
 		"bipa.xml"
 	],
 	"automaticUpdates": {
-		"type": "github",
+		"type": "github-releases",
 		"repo": "BrenekH/beryl"
 	}
 }

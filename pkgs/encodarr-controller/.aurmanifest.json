@@ -3,7 +3,7 @@
 	"testCmd": "encodarr-controller --version",
 	"include": [],
 	"automaticUpdates": {
-		"type": "github",
+		"type": "github-releases",
 		"repo": "BrenekH/encodarr"
 	}
 }
