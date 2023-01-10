@@ -1,0 +1,9 @@
+{
+	"name": "pjs",
+	"testCmd": null,
+	"include": [],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "bashbunni/pjs"
+	}
+}
