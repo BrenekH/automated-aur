@@ -1,0 +1,6 @@
+{
+	"name": "auto-editor",
+	"testCmd": "auto-editor --version",
+	"include": [],
+	"automaticUpdates": {}
+}
