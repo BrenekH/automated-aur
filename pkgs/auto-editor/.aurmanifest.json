@@ -2,5 +2,6 @@
 	"name": "auto-editor",
 	"testCmd": "auto-editor --version",
 	"include": [],
-	"automaticUpdates": {}
+	"automaticUpdates": {},
+	"aurDeps": ["python-av"]
 }
