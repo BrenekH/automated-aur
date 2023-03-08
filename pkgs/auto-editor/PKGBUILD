@@ -2,7 +2,7 @@
 # Contributor: ston <2424284164@qq.com>
 
 pkgname=auto-editor
-pkgver=23.10
+pkgver=23.10.3
 _pkgver=23w10c
 pkgrel=1
 pkgdesc="A command line application for automatically editing video and audio."
