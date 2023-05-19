@@ -3,7 +3,7 @@
 
 _pkgname='Chuck_Norris'
 pkgname='chucknorris'
-pkgver=1.3
+pkgver=1.2
 pkgrel=1
 pkgdesc='Chuck Norris jokes in your terminal'
 arch=('any')
@@ -12,7 +12,7 @@ license=('MIT')
 depends=('python')
 makedepends=('python-setuptools')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
-sha256sums=('a59b3b94986091266751757fb2a106272eff01f78dfaf034584b3335bf05e559')
+sha256sums=('99db837c0b0ba301e6a98b9365dc63ff22c3f5411a403018e55b90c9799a063e')
 
 build() {
   cd "${_pkgname}-${pkgver}"
