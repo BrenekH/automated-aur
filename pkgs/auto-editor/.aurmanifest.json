@@ -3,5 +3,5 @@
 	"testCmd": "auto-editor --version",
 	"include": [],
 	"automaticUpdates": {},
-	"aurDeps": ["python-av"]
+	"aurDeps": ["python-pyav"]
 }
