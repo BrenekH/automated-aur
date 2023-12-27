@@ -1,0 +1,9 @@
+{
+	"name": "python-pyav",
+	"testCmd": "true",
+	"include": [],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "WyattBlue/pyav"
+	}
+}
