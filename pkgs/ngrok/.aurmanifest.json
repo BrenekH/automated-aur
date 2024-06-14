@@ -6,6 +6,7 @@
 	],
 	"automaticUpdates": {
 		"type": "equinox",
-		"appID": "app_c3U4eZcDbjV"
+		"appID": "app_c3U4eZcDbjV",
+		"appSlug": "ngrok/ngrok-v3"
 	}
 }
