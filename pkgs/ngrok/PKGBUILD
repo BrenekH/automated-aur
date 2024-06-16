@@ -35,7 +35,7 @@ package() {
   cd "${srcdir}"
 
   # Install the program.
-  install -Dm755 ngrok-v3-${pkgver}-linux-* "${pkgdir}/usr/bin/ngrok"
+  install -Dm755 "ngrok" "${pkgdir}/usr/bin/ngrok"
 
   # Generate completion for bash and zsh
   mkdir -p "$BASH_COMPLETION_DIR" "$ZSH_COMPLETION_DIR"
