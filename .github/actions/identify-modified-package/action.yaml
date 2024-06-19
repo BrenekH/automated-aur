@@ -11,5 +11,5 @@ outputs:
     description: "The result of the search."
 
 runs:
-  using: "node16"
+  using: "node20"
   main: "lib/index.js"
