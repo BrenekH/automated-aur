@@ -2,6 +2,9 @@
 	"name": "auto-editor",
 	"testCmd": "auto-editor --version",
 	"include": [],
-	"automaticUpdates": {},
-	"aurDeps": ["python-av"]
+	"aurDeps": ["python-av"],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "WyattBlue/auto-editor"
+	}
 }
