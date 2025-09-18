@@ -1,0 +1,10 @@
+{
+	"name": "auto-editor-bin",
+	"testCmd": "auto-editor --version",
+	"include": [],
+	"aurDeps": [],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "WyattBlue/auto-editor"
+	}
+}
