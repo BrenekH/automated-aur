@@ -13,7 +13,7 @@ conflicts=("auto-editor")
 optdepends=(
   'yt-dlp: download and use URLs as inputs'
   'xdg-utils: automatically open completed files with xdg-open')
-source=("auto-editor-$pkgver-bin::https://github.com/WyattBlue/auto-editor/releases/download/${pkgver}/auto-editor-linux-x86_64")
+source=("auto-editor-$pkgver-bin::https://github.com/WyattBlue/auto-editor/releases/download/${pkgver}/auto-editor-linux-${CARCH}")
 sha256sums=('86ab1e4e38de988e08220363871690535eba9d1a904e4fd92ccf0f139bfeec14')
 
 options=(!debug)
