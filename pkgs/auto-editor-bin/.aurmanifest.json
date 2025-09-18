@@ -1,5 +1,5 @@
 {
-	"name": "auto-editor",
+	"name": "auto-editor-bin",
 	"testCmd": "auto-editor --version",
 	"include": [],
 	"aurDeps": [],
