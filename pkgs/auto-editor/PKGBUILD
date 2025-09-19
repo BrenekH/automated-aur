@@ -10,7 +10,7 @@ arch=('x86_64')
 license=("Unlicense")
 provides=("auto-editor")
 conflicts=("auto-editor-bin")
-depends=("glibc" "gcc-libs" "ffmpeg")
+depends=("lame" "gcc-libs" "dav1d" "x264" "ffmpeg" "opus" "libvpx" "svt-av1" "x265" "glibc")
 optdepends=(
   'yt-dlp: download and use URLs as inputs'
   'xdg-utils: automatically open completed files with xdg-open')
@@ -25,6 +25,7 @@ prepare() {
   # Echoing into a file is fine for 29.0.5, but future releases will have an existing nim.conf and some sort of
   # patching will be required, especially since the current nim.conf on master statically builds.
   echo '--passC:"-Wno-incompatible-pointer-types"' > nim.cfg
+  echo '--passC:"-Wl,-z,relro,-z,now"' > nim.cfg # Build with full relro (Relocation Read-Only)
 }
 
 build() {
