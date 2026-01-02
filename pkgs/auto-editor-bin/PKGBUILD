@@ -10,7 +10,7 @@ arch=('x86_64')
 license=("Unlicense")
 provides=("auto-editor")
 conflicts=("auto-editor")
-depends=("glibc" "gcc-libs")
+depends=("glibc" "gcc-libs" "nvidia-utils")
 optdepends=(
   'yt-dlp: download and use URLs as inputs'
   'xdg-utils: automatically open completed files with xdg-open')
