@@ -10,7 +10,7 @@ arch=('x86_64')
 license=("Unlicense")
 provides=("auto-editor")
 conflicts=("auto-editor-bin")
-depends=("lame" "gcc-libs" "dav1d" "x264" "ffmpeg" "opus" "libvpx" "svt-av1" "x265" "glibc")
+depends=("lame" "gcc-libs" "dav1d" "x264" "ffmpeg" "opus" "libvpx" "svt-av1" "x265" "glibc" "whisper.cpp")
 optdepends=(
   'yt-dlp: download and use URLs as inputs'
   'xdg-utils: automatically open completed files with xdg-open')
