@@ -31,7 +31,7 @@ prepare() {
 build() {
 	cd ${pkgname}-${pkgver}
 
-	export DISABLE_WHISPER="1"
+	# export DISABLE_WHISPER="1"
 	nimble make
 }
 
