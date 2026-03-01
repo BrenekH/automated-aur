@@ -2,7 +2,7 @@
 	"name": "auto-editor-bin",
 	"testCmd": "auto-editor --version",
 	"include": [],
-	"aurDeps": ["cuda-12.9"],
+	"aurDeps": [],
 	"automaticUpdates": {
 		"type": "github-releases",
 		"repo": "WyattBlue/auto-editor"
