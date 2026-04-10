@@ -40,7 +40,7 @@ jobs:
 
       # Send build results to PR as a comment
       - name: Comment build results
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         if: always()
         with:
           script: |
