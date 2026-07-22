@@ -2,8 +2,8 @@
 # Contributor: Tom Vincent <aur@tlvince.com>
 pkgname=friends
 _gemname=$pkgname
-pkgver=0.55
-pkgrel=2
+pkgver=0.26
+pkgrel=1
 pkgdesc="Spend time with the people you care about. Introvert-tested. Extrovert-approved."
 arch=('any')
 url="https://github.com/JacobEvelyn/friends"
@@ -33,7 +33,7 @@ noextract=("friends"
            "gli-2.21.0.gem"
            "chronic-0.10.2.gem")
 sha512sums=('09297ce841b0c424c965b5098e829e6ab2af5cdec2e545b970a3e5bcd10f374588a668b78cc380aca85525bcfea232bfdeebc6eeacf10fbf0cb6ba21bb6ab8f6'
-            'c2c032e17e9c30fefe32cecf162fdfb8e3eaef9767502b0a919bca800e48ac866319a2b716347da0edb4b382c30bd41d53395d01a19ec1eec5f2b09771e2087a'
+            '1405c3fc3ecd3ec8b5e113d5ff19e46346c5ad8ec310ac7feb8fe4bc224d77a6b8a4cc1fc2678226baa9fd84e107fd35b41e08263e08a3aa24aee178738f9917'
             '47abedf2212475c81c7f84272889b8041bcd8ee1b646d94c609fe4936b43d2be2e14194e87990ecf722a8a9be7b651dbaf5d0f2d615271b12df0c6c887c8467c'
             'c7c34ada41b76ce9d06c3451451881c914903f532a555e4353d895ae52e36dea37ff7cf5ad3254fc188270514034dcd5ccd5a68fa3d65b6e2e3ad62d02bc4237'
             '5f988de4235c5fd58d7043eb5ddee8ceb8c68dbdfed334636a9aa9deea573435fa35aa630ef4e9c5ec8c34fa25ea16770d84b71c14cc69ebf2dc33703ae8a102'
