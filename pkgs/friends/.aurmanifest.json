@@ -3,9 +3,5 @@
 	"testCmd": "friends --version",
 	"include": [
 		"friends"
-	],
-	"automaticUpdates": {
-		"type": "github-tags",
-		"repo": "JacobEvelyn/friends"
-	}
+	]
 }
