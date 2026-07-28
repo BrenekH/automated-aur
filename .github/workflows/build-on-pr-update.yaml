@@ -3,6 +3,7 @@ name: Build on PR Update
 on:
   pull_request_target: # We need pull_request_target so we have access to the repository's secrets.
     types: [opened, synchronize]
+    paths: ["pkgs/**"]
 
 jobs:
   build:
