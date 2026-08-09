@@ -1,15 +1,18 @@
 name: "Identify Modified Package"
 description: "Figure out which package has modifications and return it."
 
-inputs:
-  github-token:
-    description: "GitHub Token"
-    required: true
-
 outputs:
   package:
     description: "The result of the search."
 
 runs:
-  using: "node20"
-  main: "lib/index.js"
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v7
+
+    - name: Identify Modified Package
+      uses: actions/github-script@v9
+      with:
+        script: |
+          const script = require('.github/actions/identify-modified-package/index.js')
+          console.log(script({core, github, context}))
