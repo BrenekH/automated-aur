@@ -1,6 +1,6 @@
 {
 	"name": "whosthere",
-	"testCmd": "auto-editor --version",
+	"testCmd": "whosthere --version",
 	"include": [],
 	"aurDeps": [],
 	"automaticUpdates": {
