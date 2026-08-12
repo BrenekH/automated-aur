@@ -1,10 +1,10 @@
 {
-	"name": "auto-editor",
-	"testCmd": "auto-editor --version",
-	"include": [],
+	"name": "adguardian",
+	"testCmd": null,
+	"include": ["adguardian.bash"],
 	"aurDeps": [],
 	"automaticUpdates": {
 		"type": "github-releases",
-		"repo": "WyattBlue/auto-editor"
+		"repo": "Lissy93/AdGuardian-Term"
 	}
 }
