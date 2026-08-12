@@ -19,8 +19,6 @@ jobs:
       - name: Identify modified package
         id: modded-pkg
         uses: ./.github/actions/identify-modified-package
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build package
         id: build-package
