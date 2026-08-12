@@ -22,6 +22,7 @@ module.exports = async ({core, github, context}) => {
 			throw "More than one modified package.";
 		}
 
+		console.log(moddedPackages);
 		core.setOutput("package", moddedPackages[0]);
 
 	} catch (error) {
