@@ -1,0 +1,10 @@
+{
+	"name": "whosthere",
+	"testCmd": "whosthere --version",
+	"include": [],
+	"aurDeps": [],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "ramonvermeulen/whosthere"
+	}
+}
