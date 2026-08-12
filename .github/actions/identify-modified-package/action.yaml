@@ -14,8 +14,6 @@ runs:
       id: gh-script-find-modded-pkg
       with:
         script: |
-          const script = require('.github/actions/identify-modified-package/index.js')
-          await script({core, github, context})
           try {
               if (context.eventName !== "pull_request" && context.eventName !== "pull_request_target") {
                   throw "Not a pull request";
