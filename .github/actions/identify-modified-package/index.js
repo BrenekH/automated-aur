@@ -1,4 +1,4 @@
-module.exports = ({core, github, context}) => {
+module.exports = async ({core, github, context}) => {
 	try {
 		if (context.eventName !== "pull_request" && context.eventName !== "pull_request_target") {
 			throw "Not a pull request";
