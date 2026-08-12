@@ -4,6 +4,7 @@ description: "Figure out which package has modifications and return it."
 outputs:
   package:
     description: "The result of the search."
+    value: ${{ steps.gh-script-find-modded-pkg.outputs.package }}
 
 runs:
   using: "composite"
@@ -12,7 +13,8 @@ runs:
 
     - name: Identify Modified Package
       uses: actions/github-script@v9
+      id: gh-script-find-modded-pkg
       with:
         script: |
           const script = require('.github/actions/identify-modified-package/index.js')
-          console.log(script({core, github, context}))
+          script({core, github, context})
