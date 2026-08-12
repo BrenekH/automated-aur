@@ -6,10 +6,10 @@ module.exports = async ({core, github, context}) => {
 
 		const resp = await github.rest.pulls.listFiles({
 			...context.repo,
-			pull_number: context.payload.pull_request?.number as number,
+			pull_number: context.payload.pull_request?.number,
 		})
 
-		let moddedPackages: string[] = [];
+		let moddedPackages = [];
 		resp.data.forEach((file) => {
 			const splitFName = file.filename.split("/");
 			if (splitFName[0] === "pkgs") {
@@ -24,7 +24,7 @@ module.exports = async ({core, github, context}) => {
 
 		core.setOutput("package", moddedPackages[0]);
 
-	} catch (error: any) {
+	} catch (error) {
 		core.setFailed(error);
 	}
 }
