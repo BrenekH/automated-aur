@@ -1,0 +1,10 @@
+{
+	"name": "adguardian",
+	"testCmd": null,
+	"include": ["adguardian.bash"],
+	"aurDeps": [],
+	"automaticUpdates": {
+		"type": "github-releases",
+		"repo": "Lissy93/AdGuardian-Term"
+	}
+}
